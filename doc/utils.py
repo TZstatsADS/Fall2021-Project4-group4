@@ -55,7 +55,7 @@ def train_model(x, y, x_control, loss_function, apply_fairness_constraints, appl
 
         f_args=(x, y)
         w = minimize(fun = loss_function,
-            x0 = np.random.rand(x.shape[1],),
+            x0=np.array([1 for _ in range(x.shape[1])]),
             args = f_args,
             method = 'SLSQP',
             options = {"maxiter":max_iter},
@@ -66,7 +66,8 @@ def train_model(x, y, x_control, loss_function, apply_fairness_constraints, appl
 
         # train on just the loss function
         w = minimize(fun = loss_function,
-            x0 = np.random.rand(x.shape[1],),
+            # x0 = np.random.rand(x.shape[1],),
+            x0=np.array([1 for _ in range(x.shape[1])]),
             args = (x, y),
             method = 'SLSQP',
             options = {"maxiter":max_iter},
